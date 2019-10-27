@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#ECEFF1">
+        <ImageView
+            android:id="@+id/pokemon_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitXY" />
+        <TextView
+            android:id="@+id/pokemon_name"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pokemon_image"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="8dp"
+            android:padding="8dp"
+            android:text="pokemon_name_placeholder" />
+        <TextView
+            android:id="@+id/pokemon_type"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pokemon_name"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:text="type_placeholder" />
+        <TextView
+            android:id="@+id/pokemon_abilities"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pokemon_type"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:text="abilities_placeholder" />
+        <TextView
+            android:id="@+id/pokemon_weaknesses"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pokemon_abilities"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:text="weaknesses_placeholder" />
+</RelativeLayout>

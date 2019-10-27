@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="imageUrls">
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png</item>
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png</item>
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png</item>
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png</item>
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/013.png</item>
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/016.png</item>
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/019.png</item>
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png</item>
+        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/023.png</item>
+    </string-array>
+    <string-array name="names">
+        <item>Bulbasaur</item>
+        <item>Charmander</item>
+        <item>Squirtle</item>
+        <item>Caterpie</item>
+        <item>Weedle</item>
+        <item>Pidgey</item>
+        <item>Rattata</item>
+        <item>Spearow</item>
+        <item>Ekans</item>
+    </string-array>
+    <string-array name="types">
+        <item>Grass, Poison</item>
+        <item>Fire</item>
+        <item>Water</item>
+        <item>Bug</item>
+        <item>Bug, Poison</item>
+        <item>Normal, Flying</item>
+        <item>Normal</item>
+        <item>Normal, Flying</item>
+        <item>Poison</item>
+    </string-array>
+    <string-array name="abilities">
+        <item>Overgrow</item>
+        <item>Blaze</item>
+        <item>Torrent</item>
+        <item>Shield Dust</item>
+        <item>Shield Dust</item>
+        <item>Keen Eye, Tangled Feet</item>
+        <item>Run Away, Gu Dits</item>
+        <item>Keen Eye</item>
+        <item>Shield Skin, Intimidate</item>
+    </string-array>
+    <string-array name="weaknesses">
+        <item>Fire, Flying, Ice, Psychic</item>
+        <item>Ground, Rock, Water</item>
+        <item>Electric, Grass</item>
+        <item>Fire, Flying, Rock</item>
+        <item>Fire, Flying, Psychic, Rock</item>
+        <item>Electric, Ice, Rock</item>
+        <item>Fighting</item>
+        <item>Electric, Ice, Rock</item>
+        <item>Ground, Psychic</item>
+    </string-array>
+</resources>

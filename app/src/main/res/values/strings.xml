@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Pokédex</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="type_text">Type</string>
+    <string name="abilities_text">Abilities</string>
+    <string name="weaknesses_text">Weaknesses</string>
+</resources>
