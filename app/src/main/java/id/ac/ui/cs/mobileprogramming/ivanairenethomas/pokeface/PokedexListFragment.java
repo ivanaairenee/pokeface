@@ -1,10 +1,10 @@
 package id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,11 +15,11 @@ import android.view.ViewGroup;
 import com.example.pokeface.R;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 public class PokedexListFragment extends Fragment {
     List<PokemonEntity> mPokemons;
+    PokemonViewModel pokemonViewModel;
 
     public PokedexListFragment() {
         // Required empty public constructor
@@ -33,36 +33,19 @@ public class PokedexListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        try {
-            mPokemons = new GetPokemonsAsyncTask().execute().get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        View view = inflater.inflate(R.layout.fragment_pokemon_list, container, false);
+
+        mPokemons = pokemonViewModel.getAllPokemons().getValue();
+
+        View view = inflater.inflate(R.layout.fragment_pokedex_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         recyclerView.setAdapter(new PokedexListAdapter(mPokemons));
         return view;
-    }
-
-    private class GetPokemonsAsyncTask extends AsyncTask<Void, Void, List<PokemonEntity>> {
-        public List<PokemonEntity> result;
-
-        @Override
-        protected List<PokemonEntity> doInBackground(Void... url) {
-            return PokefaceApp.getInstance().getDatabase().pokemonDao().getAll();
-        }
-
-        @Override
-        protected void onPostExecute(List<PokemonEntity> result) {
-            mPokemons = result;
-        }
     }
 }

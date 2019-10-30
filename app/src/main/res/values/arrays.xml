@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="imageUrls">
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png</item>
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png</item>
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png</item>
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png</item>
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/013.png</item>
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/016.png</item>
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/019.png</item>
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png</item>
-        <item>https://assets.pokemon.com/assets/cms2/img/pokedex/full/023.png</item>
+        <item>drawable/bulbasaur</item>
+        <item>drawable/charmander</item>
+        <item>drawable/squirtle</item>
+        <item>drawable/caterpie</item>
+        <item>drawable/weedle</item>
+        <item>drawable/pidgey</item>
+        <item>drawable/rattata</item>
+        <item>drawable/spearow</item>
+        <item>drawable/ekans</item>
+        <item>drawable/pikachu</item>
+        <item>drawable/sandshrew</item>
+        <item>drawable/clefairy</item>
+        <item>drawable/vulpix</item>
+        <item>drawable/jigglypuff</item>
     </string-array>
     <string-array name="names">
         <item>Bulbasaur</item>
@@ -21,6 +26,11 @@
         <item>Rattata</item>
         <item>Spearow</item>
         <item>Ekans</item>
+        <item>Pikachu</item>
+        <item>Sandshrew</item>
+        <item>Clefairy</item>
+        <item>Vulpix</item>
+        <item>Jigglypuff</item>
     </string-array>
     <string-array name="types">
         <item>Grass, Poison</item>
@@ -32,6 +42,11 @@
         <item>Normal</item>
         <item>Normal, Flying</item>
         <item>Poison</item>
+        <item>Electric</item>
+        <item>Ground</item>
+        <item>Fairy</item>
+        <item>Fire</item>
+        <item>Normal, Fairy</item>
     </string-array>
     <string-array name="abilities">
         <item>Overgrow</item>
@@ -43,6 +58,11 @@
         <item>Run Away, Gu Dits</item>
         <item>Keen Eye</item>
         <item>Shield Skin, Intimidate</item>
+        <item>Static</item>
+        <item>Ground</item>
+        <item>Cute Charm, Magic Guard</item>
+        <item>Flash Fire</item>
+        <item>Cute Charm, Competitive</item>
     </string-array>
     <string-array name="weaknesses">
         <item>Fire, Flying, Ice, Psychic</item>
@@ -54,5 +74,10 @@
         <item>Fighting</item>
         <item>Electric, Ice, Rock</item>
         <item>Ground, Psychic</item>
+        <item>Ground</item>
+        <item>Grass, Ice, Water</item>
+        <item>Steel, Poison</item>
+        <item>Ground, Rock, Water</item>
+        <item>Steel, Poison</item>
     </string-array>
 </resources>

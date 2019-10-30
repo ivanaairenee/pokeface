@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/pokemine_menu_item"
+        android:title="@string/pokemine_title"
+        android:icon="@drawable/ic_favorite_black_24dp" />
     <item android:id="@+id/pokedex_menu_item"
         android:title="@string/pokedex_title"
         android:icon="@drawable/ic_blur_on_black_24dp" />

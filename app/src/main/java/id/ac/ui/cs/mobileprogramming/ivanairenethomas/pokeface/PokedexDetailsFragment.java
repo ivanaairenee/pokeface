@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.pokeface.R;
 
 
@@ -40,8 +40,9 @@ public class PokedexDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_pokemon_details, container, false);
+        return inflater.inflate(R.layout.fragment_pokedex_details, container, false);
     }
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -50,12 +51,22 @@ public class PokedexDetailsFragment extends Fragment {
         TextView pokemonType = getView().findViewById(R.id.pokemon_type);
         TextView pokemonAbilities = getView().findViewById(R.id.pokemon_abilities);
         TextView pokemonWeaknesses = getView().findViewById(R.id.pokemon_weaknesses);
+        final Button catchPokemonButton = getView().findViewById(R.id.catch_pokemon_button);
 
-        if (mPokemon.imageUrl != null) {
-            Glide.with(getContext())
-                    .load(mPokemon.imageUrl)
-                    .into(pokemonImage);
-        }
+        Context c = getContext();
+        int imageResourceId = c.getResources().getIdentifier(mPokemon.imageUrl, null, c.getPackageName());
+        pokemonImage.setImageResource(imageResourceId);
+
+        catchPokemonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            mPokemon = pokemonViewModel.catchPokemon(mPokemon);;
+            if (mPokemon.caught) {
+                catchPokemonButton.setBackgroundColor(getResources().getColor(R.color.grey));
+                catchPokemonButton.setText(getString(R.string.cannot_catch_pokemon_text));
+            }
+            }
+        });
 
         if (mPokemon.name != null) {
             pokemonName.setText(mPokemon.name);
@@ -72,5 +83,12 @@ public class PokedexDetailsFragment extends Fragment {
         if (mPokemon.weaknesses != null) {
             pokemonWeaknesses.setText(getString(R.string.weaknesses_text)+": " + mPokemon.weaknesses);
         }
+
+        if (mPokemon.caught) {
+            catchPokemonButton.setBackgroundColor(getResources().getColor(R.color.grey));
+            catchPokemonButton.setText(getString(R.string.cannot_catch_pokemon_text));
+        }
     }
+
+
 }

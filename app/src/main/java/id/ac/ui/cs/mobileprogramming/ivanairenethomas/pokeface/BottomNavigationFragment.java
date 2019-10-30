@@ -32,6 +32,12 @@ public class BottomNavigationFragment extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.pokemine_menu_item:
+                        if (getActivity().getClass() != PokeMineActivity.class) {
+                            Intent intent = new Intent(getActivity(), PokeMineActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
                     case R.id.pokedex_menu_item:
                         if (getActivity().getClass() != PokedexListActivity.class || getParentFragment().getClass() != PokedexListFragment.class) {
                             Intent intent = new Intent(getActivity(), PokedexListActivity.class);

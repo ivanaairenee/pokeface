@@ -1,17 +1,30 @@
 package id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
 import com.example.pokeface.R;
+
+import java.util.concurrent.ExecutionException;
 
 public class PokedexListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_pokemon);
+        PokemonViewModel pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel.class);
+        if (pokemonViewModel.getAllPokemons() == null) {
+            try {
+                pokemonViewModel.populateDatabase();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        setContentView(R.layout.activity_list_pokedex);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager()

@@ -17,11 +17,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PokedexListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private List<PokemonEntity> mPokemonList;
+public class PokeMineAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+    private List<PokemonEntity> caughtPokemonList;
 
-    public PokedexListAdapter(List<PokemonEntity> pokemonList){
-        this.mPokemonList = pokemonList;
+    public PokeMineAdapter(List<PokemonEntity> pokemonList){
+        this.caughtPokemonList = pokemonList;
     }
 
     @Override
@@ -31,20 +31,20 @@ public class PokedexListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.pokedex_list_item, parent, false));
+        return new PokeMineAdapter.ViewHolder(
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.pokemine_list_item, parent, false));
     }
 
     @Override
     public int getItemCount() {
-        if (mPokemonList != null && mPokemonList.size() > 0) {
-            return mPokemonList.size();
+        if (caughtPokemonList != null && caughtPokemonList.size() > 0) {
+            return caughtPokemonList.size();
         } else {
             return 1;
         }
     }
 
-    public class ViewHolder extends BaseViewHolder implements View.OnClickListener {
+    public class ViewHolder extends BaseViewHolder {
 
         @BindView(R.id.thumbnail)
         ImageView coverImageView;
@@ -52,38 +52,38 @@ public class PokedexListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.pokemon_name)
         TextView pokemonNameTextView;
 
+        @BindView(R.id.pokemon_level)
+        TextView pokemonLevelTextView;
+
         private PokemonEntity mPokemon;
         private PokemonViewModel pokemonViewModel;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this);
-            pokemonViewModel = ViewModelProviders.of((PokedexListActivity) itemView.getContext()).get(PokemonViewModel.class);
-        }
-
-        @Override
-        public void onClick(View view) {
-            PokedexListActivity pokedexListActivity = (PokedexListActivity) view.getContext();
-            pokemonViewModel.selectPokemon(mPokemon);
-            pokedexListActivity.onPokemonSelected();
+            pokemonViewModel = ViewModelProviders.of((PokeMineActivity) itemView.getContext()).get(PokemonViewModel.class);
         }
 
         protected void clear() {
             coverImageView.setImageDrawable(null);
             pokemonNameTextView.setText("");
+            pokemonLevelTextView.setText("");
         }
 
         public void onBind(int position) {
             super.onBind(position);
 
-            mPokemon = mPokemonList.get(position);
+            mPokemon = caughtPokemonList.get(position);
             Context c = coverImageView.getContext();
             int imageResourceId = c.getResources().getIdentifier(mPokemon.imageUrl, null, c.getPackageName());
             coverImageView.setImageResource(imageResourceId);
 
             if (mPokemon.name != null) {
                 pokemonNameTextView.setText(mPokemon.name);
+            }
+
+            if (mPokemon.level != 0) {
+                pokemonLevelTextView.setText("Level: "+mPokemon.level);
             }
         }
     }

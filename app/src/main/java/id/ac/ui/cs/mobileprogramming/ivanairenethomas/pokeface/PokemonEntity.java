@@ -1,15 +1,16 @@
 package id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
+
 @Entity(tableName = "pokemons")
 public class PokemonEntity {
-
-//    @PrimaryKey
-//    public int id;
 
     @ColumnInfo(name = "image_url")
     public String imageUrl;
@@ -26,6 +27,10 @@ public class PokemonEntity {
 
     public Boolean caught;
 
+    @ColumnInfo(name = "caught_time")
+    @Nullable
+    public Date caughtTime;
+
     public int level;
 
     public PokemonEntity(String name, String imageUrl, String type, String abilities, String weaknesses) {
@@ -35,6 +40,7 @@ public class PokemonEntity {
         this.abilities = abilities;
         this.weaknesses = weaknesses;
         this.caught = false;
+        this.caughtTime = null;
         this.level = 1;
     }
 }
