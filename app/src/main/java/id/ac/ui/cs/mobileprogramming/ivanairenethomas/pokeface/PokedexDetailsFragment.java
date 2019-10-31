@@ -63,7 +63,7 @@ public class PokedexDetailsFragment extends Fragment {
             mPokemon = pokemonViewModel.catchPokemon(mPokemon);;
             if (mPokemon.caught) {
                 catchPokemonButton.setBackgroundColor(getResources().getColor(R.color.grey));
-                catchPokemonButton.setText(getString(R.string.cannot_catch_pokemon_text));
+                catchPokemonButton.setText(getString(R.string.caught_pokemon_text));
             }
             }
         });
@@ -86,7 +86,7 @@ public class PokedexDetailsFragment extends Fragment {
 
         if (mPokemon.caught) {
             catchPokemonButton.setBackgroundColor(getResources().getColor(R.color.grey));
-            catchPokemonButton.setText(getString(R.string.cannot_catch_pokemon_text));
+            catchPokemonButton.setText(getString(R.string.caught_pokemon_text));
         }
     }
 

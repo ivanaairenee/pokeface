@@ -12,7 +12,7 @@ public class PokefaceApp extends Application {
     PokemonDatabase db;
     private static PokefaceApp mInstance;
     long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L;
-    Handler handler;
+    Handler timerHandler;
     int Seconds, Minutes, MilliSeconds;
     TextView timerTextView;
 
@@ -21,7 +21,7 @@ public class PokefaceApp extends Application {
         super.onCreate();
         mInstance = this;
         db = Room.databaseBuilder(getApplicationContext(), PokemonDatabase.class, "pokefave-database").build();
-        handler = new Handler();
+        timerHandler = new Handler();
         timerTextView = new TextView(this);
     }
 
@@ -35,12 +35,12 @@ public class PokefaceApp extends Application {
 
     public void startTimer() {
         StartTime = SystemClock.uptimeMillis();
-        handler.postDelayed(runnable, 0);
+        timerHandler.postDelayed(timerRunnable, 0);
     }
 
     public void pauseTimer() {
         TimeBuff += MillisecondTime;
-        handler.removeCallbacks(runnable);
+        timerHandler.removeCallbacks(timerRunnable);
     }
 
     public void resetTimer() {
@@ -53,8 +53,7 @@ public class PokefaceApp extends Application {
         MilliSeconds = 0;
     }
 
-
-    public Runnable runnable = new Runnable() {
+    public Runnable timerRunnable = new Runnable() {
         public void run() {
             MillisecondTime = SystemClock.uptimeMillis() - StartTime;
             UpdateTime = TimeBuff + MillisecondTime;
@@ -62,7 +61,7 @@ public class PokefaceApp extends Application {
             Minutes = Seconds / 60;
             Seconds = Seconds % 60;
             MilliSeconds = (int) (UpdateTime % 1000);
-            handler.postDelayed(this, 0);
+            timerHandler.postDelayed(this, 0);
             timerTextView.setText("" + Minutes + ":"
                     + String.format("%02d", Seconds) + ":"
                     + String.format("%03d", MilliSeconds));

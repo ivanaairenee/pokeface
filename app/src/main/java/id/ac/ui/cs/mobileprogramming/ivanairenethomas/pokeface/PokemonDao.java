@@ -1,5 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface;
 
+import android.database.Cursor;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -18,6 +20,9 @@ public interface PokemonDao {
     @Query("UPDATE pokemons SET caught = 1, caught_time=:date WHERE name = :name")
     void catchPokemon(String name, Date date);
 
+    @Query("UPDATE pokemons SET level=:newLevel WHERE name=:name")
+    void trainPokemon(String name, int newLevel);
+
     @Query("DELETE FROM pokemons")
     void deleteAll();
 
@@ -29,4 +34,13 @@ public interface PokemonDao {
 
     @Delete
     void delete(PokemonEntity pokemonEntity);
+
+    @Query("SELECT * FROM pokemons")
+    Cursor selectAllWithCursor();
+
+    @Query("SELECT * FROM pokemons WHERE name=:name LIMIT 1")
+    Cursor selectByNameWithCursor(String name);
+
+    @Insert
+    long insert(PokemonEntity pokemonEntity);
 }

@@ -9,7 +9,10 @@
     <string name="poketimer_title">Pokétimer</string>
     <string name="pokemine_title">Pokémine</string>
     <string name="catch_pokemon_text">Catch!</string>
-    <string name="cannot_catch_pokemon_text">Cannot catch</string>
+    <string name="caught_pokemon_text">Caught</string>
     <string name="pokemon_name_placeholder">pokemon_name_placeholder</string>
     <string name="pokemon_level_placeholder">1</string>
+    <string name="train_pokemon_button">Train</string>
+    <string name="training_in_progress">training in progress...</string>
+    <string name="low_battery_reminder">Battery low, take a rest!</string>
 </resources>

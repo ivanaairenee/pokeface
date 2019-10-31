@@ -1,9 +1,13 @@
 package id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,6 +59,9 @@ public class PokeMineAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.pokemon_level)
         TextView pokemonLevelTextView;
 
+        @BindView(R.id.pokemon_train_button)
+        Button pokemonTrainButton;
+
         private PokemonEntity mPokemon;
         private PokemonViewModel pokemonViewModel;
 
@@ -73,18 +80,41 @@ public class PokeMineAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
 
-            mPokemon = caughtPokemonList.get(position);
-            Context c = coverImageView.getContext();
-            int imageResourceId = c.getResources().getIdentifier(mPokemon.imageUrl, null, c.getPackageName());
-            coverImageView.setImageResource(imageResourceId);
+            if (caughtPokemonList.size() > 0) {
+                mPokemon = caughtPokemonList.get(position);
+                Context c = coverImageView.getContext();
+                int imageResourceId = c.getResources().getIdentifier(mPokemon.imageUrl, null, c.getPackageName());
+                coverImageView.setImageResource(imageResourceId);
 
-            if (mPokemon.name != null) {
-                pokemonNameTextView.setText(mPokemon.name);
+                if (mPokemon.name != null) {
+                    pokemonNameTextView.setText(mPokemon.name);
+                }
+
+                if (mPokemon.level != 0) {
+                    pokemonLevelTextView.setText("Level: " + mPokemon.level);
+                }
+
+                pokemonTrainButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        pokemonTrainButton.setEnabled(false);
+                        pokemonTrainButton.setText(R.string.training_in_progress);
+                        new CountDownTimer(10000 * mPokemon.level, 1000) {
+                            public void onTick(long millisUntilFinished) {
+                                pokemonLevelTextView.setText("seconds remaining: " + millisUntilFinished / 1000);
+
+                            }
+
+                            public void onFinish() {
+                                PokemonEntity leveledUpPokemon = pokemonViewModel.trainPokemon(mPokemon);
+                                pokemonLevelTextView.setText("Level: " + leveledUpPokemon.level);
+                                pokemonTrainButton.setText(R.string.train_pokemon_button);
+                            }
+                        }.start();
+                    }
+                });
             }
 
-            if (mPokemon.level != 0) {
-                pokemonLevelTextView.setText("Level: "+mPokemon.level);
-            }
         }
     }
 }

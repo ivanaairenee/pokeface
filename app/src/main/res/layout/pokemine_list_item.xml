@@ -12,18 +12,19 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:elevation="3dp"
-        card_view:cardCornerRadius="8dp"
         android:layout_marginBottom="24dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="16dp">
             <ImageView
                 android:id="@+id/thumbnail"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:layout_marginVertical="12dp"
                 android:layout_marginHorizontal="12dp"
                 android:adjustViewBounds="true"
+                android:layout_centerHorizontal="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY" />
             <RelativeLayout
@@ -53,6 +54,16 @@
                     android:gravity="center_horizontal"
                     android:fontFamily="@font/pixelated"
                     android:text="@string/pokemon_level_placeholder" />
+                <Button
+                    android:id="@+id/pokemon_train_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pokemon_level"
+                    android:text="@string/train_pokemon_button"
+                    android:fontFamily="@font/pixelated"
+                    android:background="@color/yellow"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
             </RelativeLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

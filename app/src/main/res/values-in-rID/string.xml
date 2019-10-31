@@ -3,4 +3,13 @@
     <string name="type_text">Tipe</string>
     <string name="abilities_text">Kemampuan</string>
     <string name="weaknesses_text">Kelemahan</string>
+    <string name="pokedex_title">Pokédex</string>
+    <string name="poketimer_title">Pokétimer</string>
+    <string name="pokemine_title">Pokémine</string>
+    <string name="catch_pokemon_text">Tangkap!</string>
+    <string name="caught_pokemon_text">Tertangkap</string>
+    <string name="pokemon_name_placeholder">pokemon_name_placeholder</string>
+    <string name="pokemon_level_placeholder">1</string>
+    <string name="train_pokemon_button">Latih</string>
+    <string name="training_in_progress">sedang berlatih...</string>
 </resources>

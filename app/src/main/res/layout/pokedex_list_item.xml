@@ -11,8 +11,7 @@
         android:layout_gravity="center"
         android:elevation="3dp"
         android:layout_marginTop="16px"
-        android:layout_marginHorizontal="16px"
-        card_view:cardCornerRadius="24px">
+        android:layout_marginHorizontal="16px">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

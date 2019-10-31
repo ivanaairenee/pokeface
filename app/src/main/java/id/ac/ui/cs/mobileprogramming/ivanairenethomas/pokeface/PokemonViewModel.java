@@ -1,15 +1,11 @@
 package id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.room.Room;
 
 import com.example.pokeface.R;
 
@@ -60,6 +56,19 @@ public class PokemonViewModel extends ViewModel {
         selectedPokemon.setValue(pokemonEntity);
     }
 
+    public PokemonEntity trainPokemon(PokemonEntity pokemonEntity) {
+        String newLevel = String.valueOf(pokemonEntity.level + 1);
+        try {
+            return new TrainPokemonAsyncTask().execute(pokemonEntity.name, newLevel).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return pokemonEntity;
+    }
+
     public List<PokemonEntity> populateDatabase() throws ExecutionException, InterruptedException {
         return new PopulateDatabaseAsyncTask().execute().get();
     }
@@ -78,6 +87,16 @@ public class PokemonViewModel extends ViewModel {
         updatedAllPokemons.add(newPokemon);
         allPokemons.setValue(updatedAllPokemons);
         return newPokemon;
+    }
+
+    private class TrainPokemonAsyncTask extends AsyncTask<String, Void, PokemonEntity> {
+        PokemonDatabase db = PokefaceApp.getInstance().getDatabase();
+
+        @Override
+        protected PokemonEntity doInBackground(String... params) {
+            db.pokemonDao().trainPokemon(params[0], Integer.parseInt(params[1]));
+            return db.pokemonDao().getByName(params[0]);
+        }
     }
 
     private class CatchPokemonAsyncTask extends AsyncTask<String, Void, PokemonEntity> {
