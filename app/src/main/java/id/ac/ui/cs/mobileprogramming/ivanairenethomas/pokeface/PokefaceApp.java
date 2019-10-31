@@ -15,14 +15,16 @@ public class PokefaceApp extends Application {
     Handler timerHandler;
     int Seconds, Minutes, MilliSeconds;
     TextView timerTextView;
+    boolean isTimerRunning;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-        db = Room.databaseBuilder(getApplicationContext(), PokemonDatabase.class, "pokefave-database").build();
+        db = Room.databaseBuilder(getApplicationContext(), PokemonDatabase.class, "pokefave-database").fallbackToDestructiveMigration().build();
         timerHandler = new Handler();
         timerTextView = new TextView(this);
+        isTimerRunning = false;
     }
 
     public static synchronized PokefaceApp getInstance() {
@@ -36,11 +38,13 @@ public class PokefaceApp extends Application {
     public void startTimer() {
         StartTime = SystemClock.uptimeMillis();
         timerHandler.postDelayed(timerRunnable, 0);
+        isTimerRunning = true;
     }
 
     public void pauseTimer() {
         TimeBuff += MillisecondTime;
         timerHandler.removeCallbacks(timerRunnable);
+        isTimerRunning = false;
     }
 
     public void resetTimer() {

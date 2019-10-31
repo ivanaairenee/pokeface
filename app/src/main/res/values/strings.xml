@@ -15,4 +15,6 @@
     <string name="train_pokemon_button">Train</string>
     <string name="training_in_progress">training in progress...</string>
     <string name="low_battery_reminder">Battery low, take a rest!</string>
+    <string name="training_started_text">Training started</string>
+    <string name="current_generation">Red and Green</string>
 </resources>

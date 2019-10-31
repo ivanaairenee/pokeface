@@ -137,6 +137,8 @@ public class PokemonViewModel extends ViewModel {
         private String[] types;
         private String[] abilities;
         private String[] weaknesses;
+        private String[] generations;
+        private String currentGeneration;
         PokemonDatabase db = PokefaceApp.getInstance().getDatabase();
 
         @Override
@@ -150,10 +152,16 @@ public class PokemonViewModel extends ViewModel {
                     types = resources.getStringArray(R.array.types);
                     abilities = resources.getStringArray(R.array.abilities);
                     weaknesses = resources.getStringArray(R.array.weaknesses);
+                    generations = resources.getStringArray(R.array.generations);
+                    currentGeneration = resources.getString(R.string.current_generation);
                 }
+                PokemonGenerationEntity pokemonGenerationEntity = new PokemonGenerationEntity(currentGeneration);
+                db.pokemonGenerationDao().insertAll(pokemonGenerationEntity);
                 for (int i = 0; i < names.length; i++) {
-                    PokemonEntity pokemonEntity = new PokemonEntity(names[i], imageUrls[i], types[i], abilities[i], weaknesses[i]);
+                    PokemonEntity pokemonEntity = new PokemonEntity(names[i], imageUrls[i], types[i], abilities[i], weaknesses[i], generations[i]);
+                    PokeballEntity pokeballEntity = new PokeballEntity(names[i]);
                     db.pokemonDao().insertAll(pokemonEntity);
+                    db.pokeballDao().insertAll(pokeballEntity);
                 }
             }
 

@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
 
-@Entity(tableName = "pokemons")
+@Entity(tableName = "pokemons",
+        foreignKeys = @ForeignKey(entity = PokemonGenerationEntity.class,
+                parentColumns = "generation_name",
+                childColumns = "generation"), indices = {@Index("generation")})
 public class PokemonEntity {
 
     @ColumnInfo(name = "image_url")
@@ -33,7 +38,9 @@ public class PokemonEntity {
 
     public int level;
 
-    public PokemonEntity(String name, String imageUrl, String type, String abilities, String weaknesses) {
+    public String generation;
+
+    public PokemonEntity(String name, String imageUrl, String type, String abilities, String weaknesses, String generation) {
         this.imageUrl = imageUrl;
         this.name = name;
         this.type = type;
@@ -42,5 +49,6 @@ public class PokemonEntity {
         this.caught = false;
         this.caughtTime = null;
         this.level = 1;
+        this.generation = generation;
     }
 }

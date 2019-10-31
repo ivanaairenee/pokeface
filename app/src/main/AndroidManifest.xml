@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pokeface">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface.PokefaceApp"
         android:allowBackup="true"
@@ -10,7 +12,12 @@
         android:roundIcon="@drawable/pikachu"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface.PokeTimerActivity"></activity>
+        <service
+            android:name="id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface.TrainingService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name="id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface.PokeTimerActivity" />
         <activity android:name="id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface.PokedexListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface.PokeMineActivity"></activity>
+        <activity android:name="id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface.PokeMineActivity" />
+
         <receiver android:name="id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface.BatteryLevelReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BATTERY_LOW"/>
+                <action android:name="android.intent.action.BATTERY_LOW" />
             </intent-filter>
         </receiver>
     </application>
+
 </manifest>

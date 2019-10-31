@@ -25,6 +25,6 @@ public class PokeMineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pokemine);
         RecyclerView recyclerView = findViewById(R.id.pokemine_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new PokeMineAdapter(caughtPokemons));
+        recyclerView.setAdapter(new PokeMineAdapter(this, caughtPokemons));
     }
 }

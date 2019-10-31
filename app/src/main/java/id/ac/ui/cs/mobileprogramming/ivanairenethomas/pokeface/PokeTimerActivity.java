@@ -22,6 +22,10 @@ public class PokeTimerActivity extends AppCompatActivity {
         pause = (Button)findViewById(R.id.pause_button);
         reset = (Button)findViewById(R.id.reset_button);
 
+        if (PokefaceApp.getInstance().isTimerRunning) {
+            reset.setEnabled(false);
+        }
+
         PokefaceApp.getInstance().timerTextView = textView;
 
         start.setOnClickListener(new View.OnClickListener() {

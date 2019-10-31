@@ -1,8 +1,13 @@
 package id.ac.ui.cs.mobileprogramming.ivanairenethomas.pokeface;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,11 +27,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 public class PokeMineAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private List<PokemonEntity> caughtPokemonList;
+    Context context;
 
-    public PokeMineAdapter(List<PokemonEntity> pokemonList){
+    public PokeMineAdapter(Context context, List<PokemonEntity> pokemonList){
         this.caughtPokemonList = pokemonList;
+        this.context = context;
     }
 
     @Override
@@ -99,6 +109,8 @@ public class PokeMineAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     public void onClick(View view) {
                         pokemonTrainButton.setEnabled(false);
                         pokemonTrainButton.setText(R.string.training_in_progress);
+                        context.startService(new Intent(context, TrainingService.class));
+
                         new CountDownTimer(10000 * mPokemon.level, 1000) {
                             public void onTick(long millisUntilFinished) {
                                 pokemonLevelTextView.setText("seconds remaining: " + millisUntilFinished / 1000);
@@ -109,6 +121,8 @@ public class PokeMineAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                                 PokemonEntity leveledUpPokemon = pokemonViewModel.trainPokemon(mPokemon);
                                 pokemonLevelTextView.setText("Level: " + leveledUpPokemon.level);
                                 pokemonTrainButton.setText(R.string.train_pokemon_button);
+                                pokemonTrainButton.setEnabled(true);
+                                context.stopService(new Intent(context, TrainingService.class));
                             }
                         }.start();
                     }

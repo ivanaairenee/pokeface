@@ -80,4 +80,20 @@
         <item>Ground, Rock, Water</item>
         <item>Steel, Poison</item>
     </string-array>
+    <string-array name="generations">
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+        <item>Red and Green</item>
+    </string-array>
 </resources>
